@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+    <h1>Details</h1>
+    <form id="detailsform">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <br>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone">
+        <br>
+        <button type="submit" id="submit">Submit</button>
+      </form>
+    </center>
+    <script>
+        $(document).ready(function() {
+        $('#detailsform').submit(function(event) {
+
+        var formData = {
+          name: $('#name').val(),
+          email: $('#email').val(),
+          phone: $('#phone').val()
+        };
+
+        $.ajax({
+       type: 'POST',
+         url: '/adddetails',
+         data: formData,
+        success: function(response) {
+           console.log('Data saved successfully!');
+         },
+        error: function(error) {
+         console.log('Error occurred while saving data:', error);
+        }
+        });
+        alert("details saved in database");
+     });
+    });
+    </script>
+</body>
+</html>
